@@ -1,0 +1,13 @@
+<div class="card mb-3">
+  <div class="card-header">
+    <%= t 'general.friends' %>
+  </div>
+    <nav class="nav flex-column">
+      <% @friendships.each do |friendship| %>
+        <div class="row p-1">
+          <div class="col-sm-8 nav-link"><%= friendship.user == current_user ? friendship.receiver : friendship.user %></div>
+          <div class="col-sm-4 nav-link">Actions (TODO)</div>
+        </div>
+      <% end %>
+    </nav>
+</div>

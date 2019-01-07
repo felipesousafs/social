@@ -1,0 +1,52 @@
+<div class="card mb-3">
+  <div class="card-header p-1">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="received_invites-tab" data-toggle="tab" href="#received_invites" role="tab" aria-controls="sent_invites" aria-selected="true">
+          <%= t 'models.friendship.received_invites' %>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="sent_invites-tab" data-toggle="tab" href="#sent_invites" role="tab" aria-controls="sent_invites" aria-selected="false">
+          <%= t 'models.friendship.sent_invites' %>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="tab-content p-1" id="nav-tabContent">
+    <div class="pb-3 table-responsive tab-pane fade show active" id="received_invites" role="tabpanel" aria-labelledby="received_invites-tab">
+      <% @received_requests.each do |friendship| %>
+        <div class="row m-0">
+          <div class="col-sm-6 col-md-10 col-lg-5 p-0"><%= friendship.user %></div>
+          <div class="col-sm-4 p-0 d-none d-sm-block d-md-none d-xl-block"><%= l(friendship.created_at, format: :short) %></div>
+          <div class="col-sm-2 col-md-2 col-lg-2 p-0 btn-group">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= t 'actions' %>
+            </button>
+            <div class="dropdown-menu">
+              <%= link_to (t 'accept'), accept_friendship_path(friendship), class: 'dropdown-item bg-primary text-light', data: {confirm: (t 'Are you sure?')} %>
+              <div class="dropdown-divider"></div>
+              <%= link_to (t 'deny'), friendship, method: :delete, class: 'dropdown-item', data: {confirm: (t 'Are you sure?')} %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="pb-3 table-responsive tab-pane fade show" id="sent_invites" role="tabpanel" aria-labelledby="sent_invites-tab">
+      <% @sent_requests.each do |friendship| %>
+        <div class="row m-0">
+          <div class="col-sm-6 col-md-10 col-lg-5 p-0"><%= friendship.receiver %></div>
+          <div class="col-sm-4 p-0 d-none d-sm-block d-md-none d-xl-block"><%= l(friendship.created_at, format: :short) %></div>
+          <div class="col-sm-2 col-md-2 col-lg-2 p-0 btn-group">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= t 'actions' %>
+            </button>
+            <div class="dropdown-menu">
+              <%= link_to (t 'cancel'), friendship, method: :delete, class: 'dropdown-item', data: {confirm: (t 'Are you sure?')} %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
