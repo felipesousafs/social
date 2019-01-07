@@ -16,7 +16,7 @@
         <td><%= follower.user %></td>
         <td><%= link_to 'Show', follower %></td>
         <td><%= link_to 'Edit', edit_follower_path(follower) %></td>
-        <td><%= link_to 'Destroy', follower, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', follower, method: :delete, data: { confirm: (t 'messages.are_you_sure?') } %></td>
       </tr>
     <% end %>
   </tbody>

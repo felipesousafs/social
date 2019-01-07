@@ -21,7 +21,7 @@
     <td><%= address.user %></td>
     <td><%= link_to 'Show', [address.user, address] %></td>
     <td><%= link_to 'Edit', edit_user_address_path(address.user, address) %></td>
-    <td><%= link_to 'Destroy', [address.user, address], :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', [address.user, address], :confirm => (t 'messages.are_you_sure?'), :method => :delete %></td>
   </tr>
 <% end %>
 </table>

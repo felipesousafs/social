@@ -1,0 +1,16 @@
+---
+pt-BR:
+ general:
+   friends: Amigos
+   actions: Ações
+   accept: Aceitar
+   deny: Recusar
+   cancel: Cancelar
+   edit: Editar
+   delete: Remover
+ models:
+   friendship:
+     received_invites: Convites recebidos
+     sent_invites: Convites enviados
+ messages:
+   are_you_sure?: Tem certeza?

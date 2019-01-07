@@ -20,7 +20,7 @@
         <td><%= strike.post %></td>
         <td><%= link_to 'Show', strike %></td>
         <td><%= link_to 'Edit', edit_strike_path(strike) %></td>
-        <td><%= link_to 'Destroy', strike, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', strike, method: :delete, data: { confirm: (t 'messages.are_you_sure?') } %></td>
       </tr>
     <% end %>
   </tbody>

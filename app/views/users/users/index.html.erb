@@ -22,22 +22,22 @@
           <td><%= link_to 'Unfollow', user_unfollow_path(user) %></td>
         <% end %>
         <% if can? :disable, user %>
-          <td><%= link_to 'Disable', '#', data: {confirm: 'Are you sure?'} %></td>
+          <td><%= link_to 'Disable', '#', data: {confirm: (t 'messages.are_you_sure?')} %></td>
         <% end %>
         <% if can? :send_friendship, user %>
           <td><%= link_to 'Add as friend', send_friendship_path(user) %></td>
         <% end %>
         <% if can? :block_user, user %>
-          <td><%= link_to 'Block', block_user_path(user), data: {confirm: 'Are you sure?'} %></td>
+          <td><%= link_to 'Block', block_user_path(user), data: {confirm: (t 'messages.are_you_sure?')} %></td>
         <% end %>
         <% if can? :unblock_user, user %>
-          <td><%= link_to 'Unblock', unblock_user_path(user), data: {confirm: 'Are you sure?'} %></td>
+          <td><%= link_to 'Unblock', unblock_user_path(user), data: {confirm: (t 'messages.are_you_sure?')} %></td>
         <% end %>
         <% if can? :add_superuser, user %>
-          <td><%= link_to 'Make Superuser', add_superuser_path(user), data: {confirm: 'Are you sure?'} %></td>
+          <td><%= link_to 'Make Superuser', add_superuser_path(user), data: {confirm: (t 'messages.are_you_sure?')} %></td>
         <% end %>
         <% if can? :remove_superuser, user %>
-          <td><%= link_to 'Remove Superuser', add_superuser_path(user), data: {confirm: 'Are you sure?'} %></td>
+          <td><%= link_to 'Remove Superuser', add_superuser_path(user), data: {confirm: (t 'messages.are_you_sure?')} %></td>
         <% end %>
       </tr>
     <% end %>

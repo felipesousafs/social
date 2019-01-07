@@ -3,7 +3,7 @@
     <h5 class="card-title">
       <%= link_to post.title, post %>
       <% if can? :destroy, post %>
-        <%= link_to 'Delete', post, method: :delete, data: {confirm: 'Are you sure?'}, class: 'float-right' %>
+        <%= link_to (t 'general.delete'), post, method: :delete, data: {confirm: (t 'messages.are you sure?')}, class: 'float-right' %>
       <% end %>
     </h5>
   </div>
@@ -21,7 +21,7 @@
       <%= post.updated_at %>
     </small>
     <% if can? :edit, post %>
-      <%= link_to 'Edit', edit_post_path(post), class: 'float-right btn btn-primary' %>
+      <%= link_to (t 'general.edit'), edit_post_path(post), class: 'float-right btn btn-primary' %>
     <% end %>
   </div>
 </div>

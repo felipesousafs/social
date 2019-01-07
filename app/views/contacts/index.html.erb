@@ -17,7 +17,7 @@
     <td><%= contact.user %></td>
     <td><%= link_to 'Show', [contact.user, contact] %></td>
     <td><%= link_to 'Edit', edit_user_contact_path(contact.user, contact) %></td>
-    <td><%= link_to 'Destroy', [contact.user, contact], :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', [contact.user, contact], :confirm => (t 'messages.are_you_sure?'), :method => :delete %></td>
   </tr>
 <% end %>
 </table>

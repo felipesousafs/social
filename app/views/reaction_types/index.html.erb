@@ -18,7 +18,7 @@
         <td><%= reaction_type.description %></td>
         <td><%= link_to 'Show', reaction_type %></td>
         <td><%= link_to 'Edit', edit_reaction_type_path(reaction_type) %></td>
-        <td><%= link_to 'Destroy', reaction_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', reaction_type, method: :delete, data: { confirm: (t 'messages.are_you_sure?') } %></td>
       </tr>
     <% end %>
   </tbody>
