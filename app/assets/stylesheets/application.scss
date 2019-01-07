@@ -1,0 +1,13 @@
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+table{
+  @extend .table;
+}
+.bg-dark-image{
+  background-image: url("content_bg.jpg");
+}
+.bg-no-image{
+  background-image: url("no-image.svg");
+  background-repeat: no-repeat;
+}

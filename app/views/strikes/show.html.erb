@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @strike.text %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @strike.user %>
+</p>
+
+<p>
+  <strong>Post:</strong>
+  <%= @strike.post %>
+</p>
+
+<%= link_to 'Edit', edit_strike_path(@strike) %> |
+<%= link_to 'Back', strikes_path %>

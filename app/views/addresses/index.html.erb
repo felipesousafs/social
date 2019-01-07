@@ -1,0 +1,31 @@
+<h1>Listing addresses</h1>
+
+<table>
+  <tr>
+    <th>Cep</th>
+    <th>Street</th>
+    <th>Number</th>
+    <th>Complement</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @addresses.each do |address| %>
+  <tr>
+    <td><%= address.cep %></td>
+    <td><%= address.street %></td>
+    <td><%= address.number %></td>
+    <td><%= address.complement %></td>
+    <td><%= address.user %></td>
+    <td><%= link_to 'Show', [address.user, address] %></td>
+    <td><%= link_to 'Edit', edit_user_address_path(address.user, address) %></td>
+    <td><%= link_to 'Destroy', [address.user, address], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Address', new_user_address_path(params[:user_id]) %>

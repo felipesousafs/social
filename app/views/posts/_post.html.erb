@@ -1,0 +1,27 @@
+<div class="card text-dark mb-3 mt-3">
+  <div class="card-header">
+    <h5 class="card-title">
+      <%= link_to post.title, post %>
+      <% if can? :destroy, post %>
+        <%= link_to 'Delete', post, method: :delete, data: {confirm: 'Are you sure?'}, class: 'float-right' %>
+      <% end %>
+    </h5>
+  </div>
+  <% if post.post_cover.attached? %>
+<!--    <img src="#" class="card-img-top bg-no-image" title="<%#= post.title %>">-->
+    <%= image_tag post.post_cover, class: 'img-fluid'  %>
+  <% end %>
+  <div class="card-body">
+    <p class="card-text">
+      <%= post.text %>
+    </p>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted">
+      <%= post.updated_at %>
+    </small>
+    <% if can? :edit, post %>
+      <%= link_to 'Edit', edit_post_path(post), class: 'float-right btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
