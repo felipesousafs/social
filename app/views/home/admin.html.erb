@@ -1,0 +1,106 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><%= t 'general.statistics' %></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><%= t 'general.users' %></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><%= t 'general.superuser_activities_log' %></a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div class="card text-dark mb-0 rounded-0">
+      <div class="card-header p-2">
+        <%= t 'general.statistics.about_users' %>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          Body
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="card text-dark mb-0 rounded-0">
+      <div class="card-header p-2">
+        Colocar filtros aqui
+      </div>
+      <div class="card-body p-0">
+        <table>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+
+          <% @all_users.each do |user| %>
+            <% if can? :read, user %>
+              <tr>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %></td>
+                <td><%= user.email %></td>
+                <td>
+                  <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= t 'general.actions' %>
+                  </button>
+                  <div class="dropdown-menu">
+                    <%= link_to (t 'general.action.show'), user, class: 'dropdown-item' %>
+                    <% if can? :follow, user %>
+                      <div class="dropdown-divider"></div>
+                      <%= link_to (t 'general.action.follow'), user_follow_path(user), class: 'dropdown-item' %>
+                    <% end %>
+                    <% if can? :unfollow, user %>
+                      <div class="dropdown-divider"></div>
+                      <%= link_to (t 'general.action.unfollow'), user_unfollow_path(user), class: 'dropdown-item' %>
+                    <% end %>
+                    <% if can? :disable, user %>
+                      <div class="dropdown-divider"></div>
+                      <%= link_to (t 'general.action.disable'), '#', data: {confirm: (t 'messages.are_you_sure?')}, class: 'dropdown-item' %>
+                    <% end %>
+                    <% if can? :send_friendship, user %>
+                      <div class="dropdown-divider"></div>
+                      <%= link_to (t 'general.action.add_as_friend'), send_friendship_path(user), class: 'dropdown-item' %>
+                    <% end %>
+                    <% if can? :block_user, user %>
+                      <div class="dropdown-divider"></div>
+                      <%= link_to (t 'general.action.block'), block_user_path(user), data: {confirm: (t 'messages.are_you_sure?')}, class: 'dropdown-item' %>
+                    <% end %>
+                    <% if can? :unblock_user, user %>
+                      <div class="dropdown-divider"></div>
+                      <%= link_to (t 'general.action.unblock'), unblock_user_path(user), data: {confirm: (t 'messages.are_you_sure?')}, class: 'dropdown-item' %>
+                    <% end %>
+                    <% if can? :add_superuser, user %>
+                      <div class="dropdown-divider"></div>
+                      <%= link_to (t 'general.action.make_superuser'), add_superuser_path(user), data: {confirm: (t 'messages.are_you_sure?')}, class: 'dropdown-item' %>
+                    <% end %>
+                    <% if can? :remove_superuser, user %>
+                      <div class="dropdown-divider"></div>
+                      <%= link_to (t 'general.action.remove_superuser'), remove_superuser_path(user), data: {confirm: (t 'messages.are_you_sure?')}, class: 'dropdown-item' %>
+                    <% end %>
+                  </div>
+                </td>
+
+
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+    <div class="card text-dark mb-0 rounded-0">
+      <div class="card-header p-2">
+        <%= t 'general.statistics.about_users' %>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          Body
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -37,7 +37,7 @@
           <td><%= link_to 'Make Superuser', add_superuser_path(user), data: {confirm: (t 'messages.are_you_sure?')} %></td>
         <% end %>
         <% if can? :remove_superuser, user %>
-          <td><%= link_to 'Remove Superuser', add_superuser_path(user), data: {confirm: (t 'messages.are_you_sure?')} %></td>
+          <td><%= link_to 'Remove Superuser', remove_superuser_path(user), data: {confirm: (t 'messages.are_you_sure?')} %></td>
         <% end %>
       </tr>
     <% end %>

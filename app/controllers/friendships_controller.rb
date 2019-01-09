@@ -62,6 +62,15 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  def accept_friendship
+    @request = Friendship.find(params[:request_id])
+    if @request.update(accepted: true)
+      redirect_to friendships_path, notice: 'Success.'
+    else
+      redirect_to friendships_path, alert: 'Failed to accept request.'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_friendship

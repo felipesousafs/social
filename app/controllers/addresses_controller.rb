@@ -1,6 +1,7 @@
 class AddressesController < ApplicationController
   before_action :set_addresses
   before_action :set_address, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET users/1/addresses
   def index

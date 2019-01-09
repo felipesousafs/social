@@ -3,11 +3,22 @@ pt-BR:
  general:
    friends: Amigos
    actions: Ações
-   accept: Aceitar
-   deny: Recusar
-   cancel: Cancelar
-   edit: Editar
-   delete: Remover
+   action:
+     accept: Aceitar
+     deny: Recusar
+     cancel: Cancelar
+     edit: Editar
+     delete: Remover
+     show: Visualizar
+     add_as_friend: Adicionar amigo
+     remove_friend: Remover amigo
+     block: Bloquear
+     unblock: Desbloquear
+     make_superuser: Adicionar Super Usuário
+     remove_superuser: Remover Super Usuário
+     follow: Seguir
+     unfollow: Deixar de Seguir
+     disable: Desativar
  models:
    friendship:
      received_invites: Convites recebidos

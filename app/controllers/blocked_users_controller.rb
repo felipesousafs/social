@@ -1,5 +1,6 @@
 class BlockedUsersController < ApplicationController
   before_action :set_blocked_user, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /blocked_users
   # GET /blocked_users.json

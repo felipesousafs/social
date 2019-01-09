@@ -1,5 +1,6 @@
 class StrikesController < ApplicationController
   before_action :set_strike, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /strikes
   # GET /strikes.json

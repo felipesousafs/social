@@ -8,4 +8,9 @@ class HomeController < ApplicationController
       @posts = current_user.followed_posts.page(params[:page])
     end
   end
+
+  def admin
+    @all_users = User.all
+    authorize! :read, :admin
+  end
 end

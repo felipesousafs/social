@@ -15,9 +15,10 @@ Rails.application.routes.draw do
       registrations: 'users/registrations'
   }
   get 'users', to: 'users/users#index', as: 'users'
+  get 'admin', to: 'home#admin', as: 'admin'
   scope 'friendship_requests' do
+    put ':request_id/accept', to: 'friendships#accept_friendship', as: 'accept_friendship'
     get '', to: 'users/users#friendship_requests', as: 'user_friendship_requests'
-    get ':id/accept', to: 'users/users#accept_friendship', as: 'accept_friendship'
   end
   scope 'users' do
     get ':id', to: 'users/users#show', as: 'user'

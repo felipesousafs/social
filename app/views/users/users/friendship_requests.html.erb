@@ -16,7 +16,7 @@
     <tr>
       <td><%= friendship.user %></td>
       <td><%= friendship.created_at %></td>
-      <td><%= link_to 'Accept', accept_friendship_path(friendship), data: { confirm: (t 'messages.are_you_sure?') } %></td>
+      <td><%= link_to 'Accept', accept_friendship_path(friendship), method: :put, data: { confirm: (t 'messages.are_you_sure?') } %></td>
       <td><%= link_to 'Deny', friendship, method: :delete, data: { confirm: (t 'messages.are_you_sure?') } %></td>
     </tr>
   <% end %>

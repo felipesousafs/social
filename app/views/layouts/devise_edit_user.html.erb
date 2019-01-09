@@ -21,16 +21,11 @@
   </div>
   <div class="row pb-3 pt-3">
     <div class="col-sm-12 col-lg-3">
-      <%= render 'shared/left_bar' %>
     </div>
     <div class="col-sm-12 col-lg-5 text-light mb-3">
-      <div class="<%= "alert alert-success" if flash[:notice] %>"><%= flash[:notice] %></div>
-      <div class="<%= "alert alert-danger" if flash[:alert] %>"><%= flash[:alert] %></div>
-      <div class="<%= "alert alert-danger" if flash[:error] %>"><%= flash[:error] %></div>
       <%= yield %>
     </div>
     <div class="col-sm-12 col-lg-4 ">
-      <%= render 'shared/right_bar' %>
     </div>
   </div>
   <div class="row align-items-end">

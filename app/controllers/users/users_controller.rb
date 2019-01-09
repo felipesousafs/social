@@ -1,11 +1,11 @@
 class Users::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, except: [:index, :friendship_requests, :accept_friendship]
+  before_action :set_user, except: [:index, :friendship_requests]
+  load_and_authorize_resource
 
   def index; end
 
-  def show;
-  end
+  def show; end
 
   def follow
     if @user.followers.create(follower_id: current_user.id)
@@ -36,15 +36,6 @@ class Users::UsersController < ApplicationController
     end
   end
 
-  def accept_friendship
-    @request = Friendship.find(params[:id])
-    if @request.update(accepted: true)
-      redirect_to friendships_path, notice: 'Success.'
-    else
-      redirect_to friendships_path, alert: 'Failed to accept request.'
-    end
-  end
-
   def friendship_requests
     @friendship = Friendship.where.not(accepted: true)
     @received_requests = @friendship.where(receiver_id: current_user.id)
@@ -69,11 +60,19 @@ class Users::UsersController < ApplicationController
   end
 
   def add_superuser
-    # TODO
+    if @user.add_role :admin
+      redirect_to users_path, notice: 'Superuser adicionado com sucesso.'
+    else
+      redirect_to action: :index, alert: 'Falha ao adicionar superuser.'
+    end
   end
 
   def remove_superuser
-    # TODO
+    if @user.remove_role :admin
+      redirect_to users_path, notice: 'Superuser removido com sucesso.'
+    else
+      redirect_to action: :index, alert: 'Falha ao adicionar superuser.'
+    end
   end
 
   private

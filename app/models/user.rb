@@ -13,6 +13,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
 
+  accepts_nested_attributes_for :contacts, allow_destroy: true
+  accepts_nested_attributes_for :addresses, allow_destroy: true
+
   def to_s
     self.email
   end
@@ -28,4 +31,5 @@ class User < ApplicationRecord
     posts_authors_ids << Follower.where(follower_id: self.id).pluck(:user_id)
     Post.where(user_id: User.find(posts_authors_ids))
   end
+
 end
