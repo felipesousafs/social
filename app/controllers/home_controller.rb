@@ -10,7 +10,8 @@ class HomeController < ApplicationController
   end
 
   def admin
-    @all_users = User.all
+    @q = User.ransack(params[:q])
+    @all_users = @q.result(distinct: true)
     @versions = PaperTrail::Version.where(whodunnit: (User.with_role(:admin).pluck(:id))).order(created_at: :desc)
     @users_last_month = @all_users.where(created_at: Date.today - 1.month..Date.today.at_end_of_day)
     @total_posts = Post.all
