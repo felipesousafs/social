@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :set_paper_trail_whodunnit
   # before_action :authenticate_user!
   before_action :set_array_menu
   before_action :set_search_form
@@ -42,7 +43,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    keys = [:username, :first_name, :last_name, :public_profile,
+    keys = [:username, :first_name, :last_name, :public_profile, :reason_to_be_disabled,
             contact_attributes: [:id, :email, :phone, :_destroy],
             address_attributes: [:id, :cep, :street, :number, :complement, :_destroy]
     ]
@@ -52,7 +53,7 @@ class ApplicationController < ActionController::Base
 
   def layout_by_resource
     if devise_controller?
-      if action_name == 'new'
+      if action_name == 'new' or action_name == 'reenable'
         'public'
       else
         'devise_edit_user'

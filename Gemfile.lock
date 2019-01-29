@@ -8,6 +8,14 @@ GIT
       activesupport (>= 5.0)
       i18n
 
+GIT
+  remote: https://github.com/stympy/faker.git
+  revision: fcbfaa282dc6c2d4c1393bcb65d9fb647c8a5bc0
+  branch: master
+  specs:
+    faker (1.9.1)
+      i18n (>= 0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -152,6 +160,9 @@ GEM
     nokogiri (1.10.0)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    paper_trail (10.1.0)
+      activerecord (>= 4.2, < 6.0)
+      request_store (~> 1.1)
     pg (1.1.3)
     popper_js (1.14.5)
     public_suffix (3.0.3)
@@ -188,6 +199,8 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     regexp_parser (1.3.0)
+    request_store (1.4.1)
+      rack (>= 1.4)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -269,6 +282,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  faker!
   image_processing (~> 1.2)
   jbuilder (~> 2.5)
   jquery-rails
@@ -276,10 +290,12 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mini_magick
   nested_scaffold
+  paper_trail
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.2)
   ransack!
+  responders
   rolify
   sass-rails (~> 5.0)
   selenium-webdriver
@@ -292,7 +308,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.4.4p296
+   ruby 2.5.3p105
 
 BUNDLED WITH
-   1.16.3
+   1.17.3

@@ -1,24 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Text:</strong>
-  <%= @post.text %>
-</p>
-
-<p>
-  <strong>Public:</strong>
-  <%= @post.public %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @post.user %>
-</p>
+<%= render @post, post: @post %>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

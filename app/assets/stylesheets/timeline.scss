@@ -1,0 +1,8 @@
+.timeline-item .card:hover{
+  @extend .border-success;
+  @extend .shadow;
+
+}
+.timeline-item:hover div > h5 > .badge{
+  @extend .bg-success;
+}

@@ -19,9 +19,15 @@ pt-BR:
      follow: Seguir
      unfollow: Deixar de Seguir
      disable: Desativar
+     created: criou
+     updated: atualizou
+     destroyed: removeu
  models:
    friendship:
      received_invites: Convites recebidos
      sent_invites: Convites enviados
  messages:
    are_you_sure?: Tem certeza?
+ devise:
+   failure:
+     deleted_account: "Conta desativada. Para entrar, você deve reativá-la."

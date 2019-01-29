@@ -1,0 +1,21 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col"></th>
+    <th scope="col">Users</th>
+    <th scope="col">Posts</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th scope="row">Last month</th>
+    <td><%= @users_last_month.size %></td>
+    <td><%= @posts_last_month.size %></td>
+  </tr>
+  <tr>
+    <th scope="row">Total</th>
+    <td><%= @all_users.size %></td>
+    <td><%= @total_posts.size %></td>
+  </tr>
+  </tbody>
+</table>

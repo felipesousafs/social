@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :followers
   resources :reactions
   resources :reaction_types
-  resources :posts
+  resources :posts do
+    post 'add_comment', to: 'posts#add_comment'
+  end
   resources :blocked_users
   resources :friendships
   root to: 'home#index'
@@ -14,6 +16,10 @@ Rails.application.routes.draw do
       sessions: 'users/sessions',
       registrations: 'users/registrations'
   }
+  devise_scope :user do
+    get 'reenable', to: 'users/registrations#reenable'
+    post 'reenable', to: 'users/registrations#confirm_reenable'
+  end
   get 'users', to: 'users/users#index', as: 'users'
   get 'admin', to: 'home#admin', as: 'admin'
   scope 'friendship_requests' do

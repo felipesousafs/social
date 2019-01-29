@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   rolify
+  has_paper_trail
   has_many :addresses
   has_many :contacts
   has_many :blocked_users
@@ -17,7 +18,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :addresses, allow_destroy: true
 
   def to_s
-    self.email
+    self.first_name || self.email
   end
 
   def my_friendships(accepted: false)
@@ -30,6 +31,20 @@ class User < ApplicationRecord
     posts_authors_ids << self.friendships.where(accepted: true).pluck(:receiver_id)
     posts_authors_ids << Follower.where(follower_id: self.id).pluck(:user_id)
     Post.where(user_id: User.find(posts_authors_ids))
+  end
+
+  def soft_delete
+    update_attribute(:disabled_at, Time.current)
+  end
+
+  # ensure user account is active
+  def active_for_authentication?
+    super && !disabled_at
+  end
+
+  # provide a custom message for a deleted account
+  def inactive_message
+    !disabled_at ? super : :deleted_account
   end
 
 end

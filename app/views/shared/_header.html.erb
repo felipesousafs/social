@@ -27,6 +27,11 @@
       <li class="nav-item <%= 'active' if controller_name == 'users' and action_name == 'index' %>">
         <a class="nav-link" href="<%= users_path %>">Users</a>
       </li>
+      <% if can? :add_superuser, User %>
+        <li class="nav-item <%= 'active' if controller_name == 'home' and action_name == 'admin' %>">
+          <a class="nav-link btn btn-outline-secondary" href="<%= admin_path %>">Admin's Page</a>
+        </li>
+      <% end %>
     </ul>
     <%= link_to "Nova postagem", new_post_path, class: 'nav-link btn btn-primary' %>
     <%= link_to "Perfil", edit_user_registration_path, class: 'nav-link' %>

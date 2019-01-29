@@ -2,12 +2,22 @@
   <div class="card-header">
     <%= t 'general.action.friends' %>
   </div>
-    <nav class="nav flex-column">
-      <% @friendships.each do |friendship| %>
-        <div class="row p-1">
-          <div class="col-sm-8 nav-link"><%= friendship.user == current_user ? friendship.receiver : friendship.user %></div>
-          <div class="col-sm-4 nav-link">Actions (TODO)</div>
+  <nav class="nav flex-column">
+    <% @friendships.each do |friendship| %>
+      <div class="row p-1">
+        <% user = friendship.user == current_user ? friendship.receiver : friendship.user %>
+        <div class="col-sm-8 nav-link"><%= user %></div>
+        <div class="col-sm-4 nav-link">
+          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= t 'general.actions' %>
+          </button>
+          <div class="dropdown-menu">
+            <%= link_to (t 'general.action.show'), user, class: 'dropdown-item' %>
+            <div class="dropdown-divider"></div>
+            <%= link_to (t 'general.action.delete'), friendship, class: 'dropdown-item', method: :delete, data: {confirm: (t 'messages.are_you_sure?')} %>
+          </div>
         </div>
-      <% end %>
-    </nav>
+      </div>
+    <% end %>
+  </nav>
 </div>

@@ -1,28 +1,26 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><%= t 'general.statistics' %></a>
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#admin_log" role="tab" aria-controls="home" aria-selected="true"><%= t 'general.superuser_activities_log' %></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><%= t 'general.users' %></a>
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#users" role="tab" aria-controls="profile" aria-selected="false"><%= t 'general.users' %></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><%= t 'general.superuser_activities_log' %></a>
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><%= t 'general.statistics' %></a>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  <div class="tab-pane fade show active" id="admin_log" role="tabpanel" aria-labelledby="home-tab">
     <div class="card text-dark mb-0 rounded-0">
       <div class="card-header p-2">
-        <%= t 'general.statistics.about_users' %>
+        <%= t 'general.admin_log.timeline' %>
       </div>
       <div class="card-body">
-        <p class="card-text">
-          Body
-        </p>
+        <%= render 'admin_log' %>
       </div>
     </div>
   </div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="profile-tab">
     <div class="card text-dark mb-0 rounded-0">
       <div class="card-header p-2">
         Colocar filtros aqui
@@ -33,6 +31,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
+            <th>Last sign in IP</th>
             <th>Actions</th>
           </tr>
 
@@ -42,6 +41,7 @@
                 <td><%= user.first_name %></td>
                 <td><%= user.last_name %></td>
                 <td><%= user.email %></td>
+                <td><%= user.last_sign_in_ip %></td>
                 <td>
                   <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <%= t 'general.actions' %>
@@ -97,9 +97,7 @@
         <%= t 'general.statistics.about_users' %>
       </div>
       <div class="card-body">
-        <p class="card-text">
-          Body
-        </p>
+          <%= render 'statistics' %>
       </div>
     </div>
   </div>

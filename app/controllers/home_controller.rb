@@ -11,6 +11,10 @@ class HomeController < ApplicationController
 
   def admin
     @all_users = User.all
+    @versions = PaperTrail::Version.where(whodunnit: (User.with_role(:admin).pluck(:id))).order(created_at: :desc)
+    @users_last_month = @all_users.where(created_at: Date.today - 1.month..Date.today.at_end_of_day)
+    @total_posts = Post.all
+    @posts_last_month = @total_posts.where(created_at: Date.today - 1.month..Date.today.at_end_of_day)
     authorize! :read, :admin
   end
 end

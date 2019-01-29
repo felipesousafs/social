@@ -17,3 +17,21 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+
+$(document).ready(function(){
+    console.log("JS loaded");
+    // $('#comment_form').on('ajax:success', function(e, data, status, xhr){
+    //     // var comment = "" +
+    //     //     "<div class=\"card-footer\">" +
+    //     //     "<small class=\"text-muted\">" +
+    //     //     "<strong>"+data.user_id+"</strong> comentou: <code></b> <p>" +
+    //     //     data.text + "</p></code></small>" +
+    //     //     "</div>";
+    //     // $('#comments_'+data.post_id).append(comment);
+    //     console.log("Sucesso");
+    // }).on('ajax:error',function(e, xhr, status, error){
+    //     console.log("Erro");
+    //     // $('#comment_form').text('Failed.');
+    // });
+});

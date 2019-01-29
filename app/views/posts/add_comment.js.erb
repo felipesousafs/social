@@ -1,0 +1,15 @@
+<% if @comment %>
+var comments_list = $("#comments_<%= @comment.post_id %>");
+var text_input = $("#comment_form_<%= @comment.post_id %>").find("#text");
+
+var comment = "" +
+    "<div class=\"card-footer\">" +
+    "<small class=\"text-muted\">" +
+    "<strong>" + "<%= @comment.user %>" + "</strong> comentou: <code></b> <p>" +
+    "<%= @comment.text %>" + "</p></code></small>" +
+    "</div>";
+console.log(comment);
+console.log(comments_list);
+comments_list.prepend(comment);
+text_input.val("");
+<% end %>

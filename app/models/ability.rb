@@ -46,6 +46,7 @@ class Ability
       if user.has_role? :admin
         can [:read, :edit, :update, :destroy], :all
         can :read, :admin
+        can :add_comment, Post
         can :add_superuser, User do |u|
           !(u.has_role? :admin)
           end

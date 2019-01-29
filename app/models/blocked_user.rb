@@ -1,4 +1,5 @@
 class BlockedUser < ApplicationRecord
+  has_paper_trail
   belongs_to :user
   after_create :remove_friend_and_follower
 

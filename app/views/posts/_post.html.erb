@@ -8,8 +8,8 @@
     </h5>
   </div>
   <% if post.post_cover.attached? %>
-<!--    <img src="#" class="card-img-top bg-no-image" title="<%#= post.title %>">-->
-    <%= image_tag post.post_cover, class: 'img-fluid'  %>
+    <!--    <img src="#" class="card-img-top bg-no-image" title="<%#= post.title %>">-->
+    <%= image_tag post.post_cover, class: 'img-fluid' %>
   <% end %>
   <div class="card-body">
     <p class="card-text">
@@ -24,4 +24,29 @@
       <%= link_to (t 'general.action.edit'), edit_post_path(post), class: 'float-right btn btn-primary' %>
     <% end %>
   </div>
+  <button class="btn btn-sm" type="button" data-target="#t2_details_<%= post.id %>" data-toggle="collapse">
+    Comentários ▼
+  </button>
+  <div class="collapse border" id="t2_details_<%= post.id %>">
+    <%= simple_form_for('', url: post_add_comment_path(post), html: { id: "comment_form_#{post.id}" }, remote: true) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :text, label: false, as: :text, autofocus: true %>
+        <%= f.input :user_id, label: false, as: :hidden, value: current_user.id %>
+        <%= f.input :post_id, label: false, as: :hidden, value: post.id %>
+      </div>
+      <div class="form-actions mt-3 mb-3">
+        <%= f.button :submit, 'Comentar', class: 'btn btn-primary', id: 'submit_comment' %>
+      </div>
+    <% end %>
+    <div id="comments_<%= post.id %>">
+      <% post.comments.reorder(created_at: :desc).each do |comment| %>
+        <div class="card-footer">
+          <small class="text-muted">
+            <strong><%= comment.user %></strong> comentou: <code></b> <p><%= comment %></p></code>
+          </small>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
 </div>

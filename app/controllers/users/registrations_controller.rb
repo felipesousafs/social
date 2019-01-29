@@ -20,13 +20,54 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if params[:commit] == "Desativar minha conta"
+      if account_update_params[:reason_to_be_disabled].present?
+        ActiveRecord::Base.transaction do
+          resource.soft_delete
+          Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+          set_flash_message :notice, :destroyed
+          yield resource if block_given?
+          respond_with_navigational(resource) {redirect_to after_sign_out_path_for(resource_name)}
+          flash[:notice] = 'Conta desativada com sucesso.'
+        end
+      else
+        flash[:error] = 'Informe a justificativa para desativação da conta.'
+        redirect_to edit_user_registration_path
+      end
+    else
+      super
+    end
+  end
+
+  def reenable;
+  end
+
+  def confirm_reenable
+    if params[:email].present?
+      user = User.find_by_email(params[:email])
+      if user
+        if user.disabled_at
+          user.update(disabled_at: nil)
+          redirect_to new_user_session_path, notice: 'Tudo pronto! Sua conta foi reativada e você já pode efetuar login.'
+        else
+          redirect_to reenable_path, alert: 'O usuário informado não possui conta desativada.'
+        end
+      else
+        redirect_to reenable_path, alert: 'Usuário não encontrado.'
+      end
+    else
+      redirect_to reenable_path, alert: 'Informe o email.'
+    end
+  end
 
   # DELETE /resource
   # def destroy
-  #   super
+  # resource.soft_delete
+  # Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+  # set_flash_message :notice, :destroyed
+  # yield resource if block_given?
+  # respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
   # end
 
   # GET /resource/cancel
