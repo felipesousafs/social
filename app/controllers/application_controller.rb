@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :set_paper_trail_whodunnit
   # before_action :authenticate_user!
+  before_action :set_locale
   before_action :set_array_menu
   before_action :set_search_form
   before_action :set_right_menu
@@ -38,6 +39,11 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       @friendships = Friendship.where(accepted: true)
     end
+  end
+
+  def set_locale
+    session[:locale] = params[:locale] if params[:locale].present?
+    I18n.locale = session[:locale] || I18n.default_locale
   end
 
   protected
