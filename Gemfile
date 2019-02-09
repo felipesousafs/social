@@ -76,3 +76,5 @@ gem "mini_magick"
 
 gem 'paper_trail'
 gem 'responders'
+
+gem 'rest-client'

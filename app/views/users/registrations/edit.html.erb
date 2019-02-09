@@ -5,6 +5,10 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
+      <% if resource.avatar.attached? %>
+        <%= image_tag resource.avatar, class: 'img-fluid' %>
+      <% end %>
+      <%= f.file_field :avatar %>
       <%= f.input :first_name, required: true, autofocus: true %>
       <%= f.input :last_name, required: false, autofocus: true %>
       <%= f.input :email, required: true, autofocus: true %>

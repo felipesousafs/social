@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       registrations: 'users/registrations'
   }
   devise_scope :user do
+    get 'my_timeline', to: 'users/users#my_timeline'
     get 'reenable', to: 'users/registrations#reenable'
     post 'reenable', to: 'users/registrations#confirm_reenable'
   end

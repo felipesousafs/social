@@ -1,6 +1,6 @@
 class Users::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, except: [:index, :friendship_requests]
+  before_action :set_user, except: [:index, :friendship_requests, :my_timeline]
   load_and_authorize_resource
 
   def index; end
@@ -73,6 +73,10 @@ class Users::UsersController < ApplicationController
     else
       redirect_to action: :index, alert: 'Falha ao adicionar superuser.'
     end
+  end
+
+  def my_timeline
+    @posts = current_user.posts.page(params[:page])
   end
 
   private

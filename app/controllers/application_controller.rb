@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :set_right_menu
   before_action :set_left_menu
   before_action :configure_permitted_parameters, if: :devise_controller?
+  respond_to :json, :html
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
@@ -49,7 +50,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    keys = [:username, :first_name, :last_name, :public_profile, :reason_to_be_disabled,
+    keys = [:avatar, :username, :first_name, :last_name, :public_profile, :reason_to_be_disabled,
             contact_attributes: [:id, :email, :phone, :_destroy],
             address_attributes: [:id, :cep, :street, :number, :complement, :_destroy]
     ]

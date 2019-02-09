@@ -14,6 +14,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
 
+  has_one_attached :avatar
   accepts_nested_attributes_for :contacts, allow_destroy: true
   accepts_nested_attributes_for :addresses, allow_destroy: true
 
@@ -45,6 +46,11 @@ class User < ApplicationRecord
   # provide a custom message for a deleted account
   def inactive_message
     !disabled_at ? super : :deleted_account
+  end
+
+  def new_location(latitude, longitude)
+    api = ApiService.new(self.email, token: self.authentication_token)
+    api.create_location(latitude, longitude)
   end
 
 end
