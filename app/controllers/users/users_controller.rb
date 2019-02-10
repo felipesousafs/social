@@ -7,6 +7,10 @@ class Users::UsersController < ApplicationController
   end
 
   def show;
+    respond_to do |format|
+      format.html
+      format.json {render json: {id: @user.id, email: @user.email, address: @user.addresses.first&.street, latitude: @user.latitude, longitude: @user.longitude}}
+    end
   end
 
   def follow

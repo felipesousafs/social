@@ -11,6 +11,7 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag 'nearby' if action_name == 'nearby' %>
+  <%= javascript_include_tag 'user' if action_name == 'show' and controller_name == 'users' %>
 
 </head>
 

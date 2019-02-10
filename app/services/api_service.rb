@@ -111,6 +111,31 @@ class ApiService
     end
   end
 
+  def update_location(latitude, longitude)
+    body = {
+      "location":
+        {
+          "latitude": latitude,
+          "longitude": longitude
+        }
+    }
+
+    url = @base_url + '/locations/get_user_location.json'
+    # request = RestClient.get(url, headers)
+    response = RestClient::Request.execute(method: :get, url: url, headers: headers)
+    puts response.code
+    if response.code == 200
+      location = JSON.parse(response.body)
+      url = @base_url + "/locations/#{location['id']}.json"
+      # request = RestClient.get(url, headers)
+      response = RestClient::Request.execute(method: :patch, url: url,
+                                             payload: body, headers: headers)
+      JSON.parse(response.body)
+    else
+      nil
+    end
+  end
+
   def nearby_users
     url = @base_url + '/locations/nearby.json'
     # request = RestClient.get(url, headers)
