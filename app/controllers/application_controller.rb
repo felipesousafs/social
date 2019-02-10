@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   def set_array_menu
-    @array_menu = %w(posts friendships followers chats blocked_users)
+    @array_menu = %w(posts followers chats blocked_users)
   end
 
   def set_search_form

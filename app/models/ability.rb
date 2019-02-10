@@ -12,6 +12,7 @@ class Ability
         f.receiver_id == user.id
       end
       can :my_timeline, User
+      can :nearby, User
       can :read, Follower
       can :destroy, Follower, user_id: user.id
       can :read, Chat, user_id: user.id, receiver_id: user.id

@@ -27,6 +27,9 @@
       <li class="nav-item <%= 'active' if controller_name == 'users' and action_name == 'index' %>">
         <a class="nav-link" href="<%= users_path %>">Users</a>
       </li>
+      <li class="nav-item <%= 'active' if controller_name == 'users' and action_name == 'nearby' %>">
+        <a class="nav-link" href="<%= nearby_path %>">Nearby Users</a>
+      </li>
       <% if can? :add_superuser, User %>
         <li class="nav-item <%= 'active' if controller_name == 'home' and action_name == 'admin' %>">
           <a class="nav-link btn btn-outline-secondary" href="<%= admin_path %>">Admin's Page</a>

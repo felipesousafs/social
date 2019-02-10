@@ -1,11 +1,13 @@
 class Users::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, except: [:index, :friendship_requests, :my_timeline]
+  before_action :set_user, except: [:index, :friendship_requests, :my_timeline, :nearby]
   load_and_authorize_resource
 
-  def index; end
+  def index;
+  end
 
-  def show; end
+  def show;
+  end
 
   def follow
     if @user.followers.create(follower_id: current_user.id)
@@ -77,6 +79,16 @@ class Users::UsersController < ApplicationController
 
   def my_timeline
     @posts = current_user.posts.page(params[:page])
+  end
+
+  def nearby
+    if current_user
+      @nearby_users = current_user.get_nearby_users
+      respond_to do |format|
+        format.html
+        format.json {render json: @nearby_users, status: 201}
+      end
+    end
   end
 
   private

@@ -22,6 +22,7 @@ pt-BR:
      created: criou
      updated: atualizou
      destroyed: removeu
+   nearby_users: Usuários próximos
  models:
    friendship:
      received_invites: Convites recebidos

@@ -18,11 +18,10 @@
 //= require bootstrap-sprockets
 //= require bootstrap-table
 //= require leaflet.js
-//= require_tree .
 
 
-$(document).ready(function(){
-    console.log("JS loaded");
+$(document).ready(function () {
+    console.log("application.js loaded");
     // $('#comment_form').on('ajax:success', function(e, data, status, xhr){
     //     // var comment = "" +
     //     //     "<div class=\"card-footer\">" +
@@ -37,28 +36,4 @@ $(document).ready(function(){
     //     // $('#comment_form').text('Failed.');
     // });
 
-    var mymap = L.map('mapid').setView([-5.05059, -42.79477], 13);
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoiZm1zb2Z0IiwiYSI6ImNqcGluYjA4YjBkeW0zcW1tc3QyYnJyZXoifQ.z8_uH8BcuUlj_6kpOBTkOw'
-    }).addTo(mymap);
-
-    var markerGroup = L.layerGroup().addTo(mymap);
-    var popup = L.popup();
-
-    function onMapClick(e) {
-        popup
-            .setLatLng(e.latlng)
-            .setContent(e.latlng.toString())
-            .openOn(mymap);
-        // mymap.removeLayer();
-        markerGroup.clearLayers();
-        L.marker([e.latlng.lat, e.latlng.lng]).addTo(markerGroup);
-        $('#user_latitude').val(e.latlng.lat);
-        $('#user_longitude').val(e.latlng.lng);
-    }
-
-    mymap.on('click', onMapClick);
 });

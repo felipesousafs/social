@@ -62,6 +62,11 @@ class User < ApplicationRecord
     end
   end
 
+  def get_nearby_users
+    api = ApiService.new(self.email, token: self.authentication_token)
+    api.nearby_users
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end

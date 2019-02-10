@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get 'my_timeline', to: 'users/users#my_timeline'
     get 'reenable', to: 'users/registrations#reenable'
     post 'reenable', to: 'users/registrations#confirm_reenable'
+    get 'nearby', to: 'users/users#nearby'
   end
   get 'users', to: 'users/users#index', as: 'users'
   get 'admin', to: 'home#admin', as: 'admin'

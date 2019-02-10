@@ -111,19 +111,10 @@ class ApiService
     end
   end
 
-  def nearby_users(latitude, longitude)
-    body = {
-      "user":
-        {
-          "latitude": latitude,
-          "longitude": longitude
-        }
-    }
-
+  def nearby_users
     url = @base_url + '/locations/nearby.json'
     # request = RestClient.get(url, headers)
-    response = RestClient::Request.execute(method: :get, url: url,
-                                           payload: body, headers: headers)
+    response = RestClient::Request.execute(method: :get, url: url, headers: headers)
     puts response.code
     if response.code == 200
       JSON.parse(response.body)
