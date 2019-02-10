@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
-      format.json { head :forbidden, content_type: 'text/html' }
-      format.html { redirect_to main_app.root_url, alert: exception.message }
-      format.js   { head :forbidden, content_type: 'text/html' }
+      format.json {head :forbidden, content_type: 'text/html'}
+      format.html {redirect_to main_app.root_url, alert: exception.message}
+      format.js {head :forbidden, content_type: 'text/html'}
     end
   end
 
@@ -38,7 +38,8 @@ class ApplicationController < ActionController::Base
 
   def set_left_menu
     if user_signed_in?
-      @friendships = Friendship.where(accepted: true)
+      @friendships = Friendship.where(accepted: true).
+        where('friendships.receiver_id = ? OR friendships.user_id = ? ', current_user.id, current_user.id)
     end
   end
 
@@ -50,7 +51,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    keys = [:avatar, :username, :first_name, :last_name, :public_profile, :reason_to_be_disabled,
+    keys = [:avatar, :username, :first_name, :last_name, :public_profile,
+            :reason_to_be_disabled, :latitude, :longitude,
             contact_attributes: [:id, :email, :phone, :_destroy],
             address_attributes: [:id, :cep, :street, :number, :complement, :_destroy]
     ]

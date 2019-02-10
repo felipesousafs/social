@@ -30,6 +30,16 @@
                   input_html: {autocomplete: "current-password"} %>
     </div>
 
+    <div id="mapid"></div>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :latitude %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :longitude %>
+      </div>
+    </div>
+
     <div class="form-actions">
       <%= f.button :submit, "Update", class: 'btn btn-primary btn-block text-uppercase' %>
     </div>

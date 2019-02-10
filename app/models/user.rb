@@ -18,6 +18,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :contacts, allow_destroy: true
   accepts_nested_attributes_for :addresses, allow_destroy: true
 
+  after_update :new_location, unless: :current_address
+
   def to_s
     self.first_name || self.email
   end
@@ -48,9 +50,20 @@ class User < ApplicationRecord
     !disabled_at ? super : :deleted_account
   end
 
-  def new_location(latitude, longitude)
-    api = ApiService.new(self.email, token: self.authentication_token)
-    api.create_location(latitude, longitude)
+  def current_address
+    self.addresses.first&.street
+  end
+
+  def new_location
+    if self.latitude and self.longitude
+      api = ApiService.new(self.email, token: self.authentication_token)
+      response = api.create_location(self.latitude, self.longitude)
+      self.addresses.create(street: response['address'])
+    end
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 
 end

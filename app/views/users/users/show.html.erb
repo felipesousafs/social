@@ -1,15 +1,33 @@
-<p id="notice"><%= notice %></p>
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<div class="card text-dark mb-3">
+  <div class="card-header pb-0">
+    <h5 class="card-title">
+      User profile
+    </h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <% if @user.avatar.attached? %>
+          <%= image_tag @user.avatar, class: 'img-fluid' %>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <p>
+          <strong>Name:</strong>
+          <%= @user.full_name %>
+        </p>
+        <p>
+          <strong>Email:</strong>
+          <%= @user.email %>
+        </p>
+        <p>
+          <strong>Endereço:</strong>
+          <%= @user.addresses.first&.street %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <%= link_to 'Back', users_path %>

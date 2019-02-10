@@ -3,7 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
+  after_action :get_token, only: :create
   # GET /resource/sign_up
   # def new
   #   super
@@ -11,13 +11,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    email = sign_up_params[:email]
-    pwd = sign_up_params[:password]
+    @email = sign_up_params[:email]
+    @pwd = sign_up_params[:password]
     build_resource(sign_up_params)
 
     ActiveRecord::Base.transaction do
       resource.save
-      api = ApiService.new(email, password: pwd)
+      api = ApiService.new(@email, password: @pwd)
       api.create_mirror
     end
     yield resource if block_given?
@@ -35,6 +35,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
       clean_up_passwords resource
       set_minimum_password_length
       respond_with resource
+    end
+  end
+
+  def get_token
+    if current_user
+      api = ApiService.new(@email, password: @pwd)
+      token = api.get_token
+      current_user.update(authentication_token: token)
     end
   end
 

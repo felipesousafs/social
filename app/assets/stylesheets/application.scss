@@ -2,14 +2,23 @@
 @import "bootstrap";
 @import "bootstrap-table";
 @import "timeline";
+@import "leaflet";
 
-table{
+table {
   @extend .table;
 }
-.bg-dark-image{
+
+.bg-dark-image {
   background-image: url("content_bg.jpg");
 }
-.bg-no-image{
+
+.bg-no-image {
   background-image: url("no-image.svg");
   background-repeat: no-repeat;
+}
+
+#mapid {
+  height: 300px;
+  padding: 5px;
+  margin-bottom: 30px;
 }
