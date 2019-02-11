@@ -76,6 +76,20 @@ class User < ApplicationRecord
     api.nearby_users
   end
 
+  def destroy_my_location
+    if self.latitude and self.longitude
+      api = ApiService.new(self.email, token: self.authentication_token)
+      response = api.destroy_location
+      if response.to_s == '200'
+        self.latitude = nil
+        self.longitude = nil
+        self.addresses.destroy_all
+        self.save
+        return true
+      end
+    end
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end

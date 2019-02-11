@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get 'reenable', to: 'users/registrations#reenable'
     post 'reenable', to: 'users/registrations#confirm_reenable'
     get 'nearby', to: 'users/users#nearby'
+    delete 'users/:id/destroy_location', to: 'users/users#destroy_location', as: :destroy_location
   end
   get 'users', to: 'users/users#index', as: 'users'
   get 'admin', to: 'home#admin', as: 'admin'

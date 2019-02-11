@@ -136,6 +136,22 @@ class ApiService
     end
   end
 
+  def destroy_location
+    url = @base_url + '/locations/get_user_location.json'
+    # request = RestClient.get(url, headers)
+    response = RestClient::Request.execute(method: :get, url: url, headers: headers)
+    puts response.code
+    if response.code == 200
+      location = JSON.parse(response.body)
+      url = @base_url + "/locations/#{location['id']}.json"
+      # request = RestClient.get(url, headers)
+      response = RestClient::Request.execute(method: :delete, url: url, headers: headers)
+      response.code
+    else
+      nil
+    end
+  end
+
   def nearby_users
     url = @base_url + '/locations/nearby.json'
     # request = RestClient.get(url, headers)

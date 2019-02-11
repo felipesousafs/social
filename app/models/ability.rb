@@ -13,6 +13,7 @@ class Ability
       end
       can :my_timeline, User
       can :nearby, User
+      can :destroy_location, User, id: user.id
       can :read, Follower
       can :destroy, Follower, user_id: user.id
       can :read, Chat, user_id: user.id, receiver_id: user.id

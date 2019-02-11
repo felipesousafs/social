@@ -28,7 +28,7 @@ pt-BR:
      received_invites: Convites recebidos
      sent_invites: Convites enviados
  messages:
-   are_you_sure?: Tem certeza?
+   are_you_sure: Tem certeza?
  devise:
    failure:
      deleted_account: "Conta desativada. Para entrar, você deve reativá-la."

@@ -15,17 +15,29 @@ class Users::UsersController < ApplicationController
 
   def follow
     if @user.followers.create(follower_id: current_user.id)
-      redirect_to users_path, notice: 'Success.'
+      respond_to do |format|
+        format.html {redirect_to users_path, notice: "Agora você está seguindo #{@user}."}
+        format.json {render json: {notice: "Agora você está seguindo #{@user}."}}
+      end
     else
-      redirect_to action: :index, alert: 'Failed to follow this user.'
+      respond_to do |format|
+        format.html {redirect_to action: :index, alert: "Falha ao seguir #{@user}."}
+        format.json {render json: {alert: "Falha ao seguir #{@user}."}}
+      end
     end
   end
 
   def unfollow
     if @user.followers.find_by(follower_id: current_user.id).destroy
-      redirect_to users_path, notice: 'Success'
+      respond_to do |format|
+        format.html {redirect_to users_path, notice: "Você deixou de seguir #{@user}."}
+        format.json {render json: {notice: "Você deixou de seguir #{@user}."}}
+      end
     else
-      redirect_to action: :index, alert: 'Failed to unfollow this user.'
+      respond_to do |format|
+        format.html {redirect_to action: :index, alert: "Falha ao tentar deixar de seguir #{@user}."}
+        format.json {render json: {alert: "Falha ao tentar deixar de seguir #{@user}."}}
+      end
     end
   end
 
@@ -92,6 +104,13 @@ class Users::UsersController < ApplicationController
         format.html
         format.json {render json: @nearby_users, status: 201}
       end
+    end
+  end
+
+  def destroy_location
+    @user.destroy_my_location
+    respond_to do |format|
+      format.html {redirect_to @user, notice: "Localização removida."}
     end
   end
 

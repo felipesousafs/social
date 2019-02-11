@@ -26,11 +26,19 @@
         </p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="map_user" class="map-md"></div>
+    <% if @user.addresses.any? %>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="map_user" class="map-md"></div>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col-md-12">
+          <%= link_to 'Remover minha localização', destroy_location_path(@user), class: 'btn btn-danger btn-block',
+                      method: :delete, data: {confirm: (t 'messages.are_you_sure')} %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
