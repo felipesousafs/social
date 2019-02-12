@@ -17,7 +17,7 @@
         <td><%= friendship.accepted %></td>
         <td><%= friendship.user %></td>
         <td><%= link_to 'Show', friendship %></td>
-        <td><%= link_to 'Destroy', friendship, method: :delete, data: { confirm: (t 'messages.are_you_sure?') } %></td>
+        <td><%= link_to 'Destroy', friendship, method: :delete, data: { confirm: (t 'messages.are_you_sure') } %></td>
       </tr>
     <% end %>
   </tbody>

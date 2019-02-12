@@ -1,34 +1,49 @@
 ---
 pt-BR:
- general:
-   friends: Amigos
-   actions: Ações
-   action:
-     accept: Aceitar
-     deny: Recusar
-     cancel: Cancelar
-     edit: Editar
-     delete: Remover
-     show: Visualizar
-     add_as_friend: Adicionar amigo
-     remove_friend: Remover amigo
-     block: Bloquear
-     unblock: Desbloquear
-     make_superuser: Adicionar Super Usuário
-     remove_superuser: Remover Super Usuário
-     follow: Seguir
-     unfollow: Deixar de Seguir
-     disable: Desativar
-     created: criou
-     updated: atualizou
-     destroyed: removeu
-   nearby_users: Usuários próximos
- models:
-   friendship:
-     received_invites: Convites recebidos
-     sent_invites: Convites enviados
- messages:
-   are_you_sure: Tem certeza?
- devise:
-   failure:
-     deleted_account: "Conta desativada. Para entrar, você deve reativá-la."
+  general:
+    friends: Amigos
+    actions: Ações
+    action:
+      accept: Aceitar
+      deny: Recusar
+      cancel: Cancelar
+      edit: Editar
+      delete: Remover
+      show: Visualizar
+      add_as_friend: Adicionar amigo
+      remove_friend: Remover amigo
+      block: Bloquear
+      unblock: Desbloquear
+      make_superuser: Adicionar Super Usuário
+      remove_superuser: Remover Super Usuário
+      follow: Seguir
+      unfollow: Deixar de Seguir
+      disable: Desativar
+      created: criou
+      updated: atualizou
+      destroyed: removeu
+    nearby_users: Usuários próximos
+  models:
+    friendship:
+      received_invites: Convites recebidos
+      sent_invites: Convites enviados
+  messages:
+    are_you_sure: Tem certeza?
+  devise:
+    failure:
+      deleted_account: "Conta desativada. Para entrar, você deve reativá-la."
+  menu:
+    timeline: Linha do tempo
+    search: Pesquisar
+    name_or_email: Nome ou email
+    logout: Sair
+    edit_profile: Editar perfil
+    my_profile: Meu perfil
+    my_timeline: Minha linha do tempo
+    new_post: Nova publicação
+    admin_page: Página do Admin
+    nearby_users: Usuários próximos
+    users: Usuários
+    friendship: Amizades
+    follower: Seguidores
+    blocked_user: Bloqueados

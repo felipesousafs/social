@@ -10,42 +10,39 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item <%= 'active' if controller_name == 'home' %>">
-        <a class="nav-link" href="<%= home_index_path %>">Timeline</a>
+        <a class="nav-link" href="<%= home_index_path %>"><%= (t 'menu.timeline') %></a>
       </li>
       <% @array_menu.sort_by {|c| Kernel.const_get(c.singularize.camelize).model_name.human.downcase.pluralize}.each do |c| %>
         <%# if can? :read, c %>
         <li class="nav-item <%= 'active' if controller_name == c %>">
           <%= link_to eval("#{c}_path"), class: 'nav-link' do %>
-            <%= Kernel.const_get(c.singularize.camelize).model_name.human.downcase.pluralize.upcase_first %>
+            <%= t 'menu.'+c.singularize %>
           <% end %>
           <%# end %>
         </li>
       <% end %>
-      <li class="nav-item <%= 'active' if action_name == 'friendship_requests' %>">
-        <a class="nav-link" href="<%= user_friendship_requests_path %>">Friendship Requests</a>
-      </li>
       <li class="nav-item <%= 'active' if controller_name == 'users' and action_name == 'index' %>">
-        <a class="nav-link" href="<%= users_path %>">Users</a>
+        <a class="nav-link" href="<%= users_path %>"><%= t 'menu.users' %></a>
       </li>
       <li class="nav-item <%= 'active' if controller_name == 'users' and action_name == 'nearby' %>">
-        <a class="nav-link" href="<%= nearby_path %>">Nearby Users</a>
+        <a class="nav-link" href="<%= nearby_path %>"><%= t 'menu.nearby_users' %></a>
       </li>
       <% if can? :add_superuser, User %>
         <li class="nav-item <%= 'active' if controller_name == 'home' and action_name == 'admin' %>">
-          <a class="nav-link btn btn-outline-secondary" href="<%= admin_path %>">Admin's Page</a>
+          <a class="nav-link btn btn-outline-secondary" href="<%= admin_path %>"><%= t 'menu.admin_page' %></a>
         </li>
       <% end %>
     </ul>
-    <%= link_to "Nova postagem", new_post_path, class: 'nav-link btn btn-primary' %>
-    <%= link_to "Minha timeline", my_timeline_path, class: 'nav-link btn btn-outline-light ml-1' %>
-    <%= link_to "Meu Perfil", user_path(current_user), class: 'nav-link' %>
-    <%= link_to "Editar Perfil", edit_user_registration_path, class: 'nav-link' %>
-    <%= link_to "Sair", destroy_user_session_path, method: :delete, class: 'nav-link' %>
+    <%= link_to (t "menu.new_post"), new_post_path, class: 'nav-link btn btn-primary' %>
+    <%= link_to (t "menu.my_timeline"), my_timeline_path, class: 'nav-link btn btn-outline-light ml-1' %>
+    <%= link_to (t "menu.my_profile"), user_path(current_user), class: 'nav-link' %>
+    <%= link_to (t "menu.edit_profile"), edit_user_registration_path, class: 'nav-link' %>
+    <%= link_to (t "menu.logout"), destroy_user_session_path, method: :delete, class: 'nav-link' %>
 
     <%= search_form_for @q, class: 'form-inline my-2 my-lg-0' do |f| %>
-      <%= f.search_field :first_name_or_last_name_or_email_cont, class: 'form-control mr-sm-2', placeholder: 'Search for users by name or email' %>
+      <%= f.search_field :first_name_or_last_name_or_email_cont, class: 'form-control mr-sm-2', placeholder: (t 'menu.name_or_email') %>
 
-      <%= f.submit "Search", class: 'btn btn-outline-success my-2 my-sm-0' %>
+      <%= f.submit (t "menu.search"), class: 'btn btn-outline-success my-2 my-sm-0' %>
     <% end %>
   </div>
 </nav>

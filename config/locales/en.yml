@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  menu:
+    search: Search
+    name_or_email: Name or email
+  messages:
+    are_you_sure: Are you sure?

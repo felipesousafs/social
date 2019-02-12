@@ -20,7 +20,7 @@
         <td><%= reaction.reaction_type %></td>
         <td><%= link_to 'Show', reaction %></td>
         <td><%= link_to 'Edit', edit_reaction_path(reaction) %></td>
-        <td><%= link_to 'Destroy', reaction, method: :delete, data: { confirm: (t 'messages.are_you_sure?') } %></td>
+        <td><%= link_to 'Destroy', reaction, method: :delete, data: { confirm: (t 'messages.are_you_sure') } %></td>
       </tr>
     <% end %>
   </tbody>

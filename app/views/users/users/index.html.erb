@@ -28,7 +28,7 @@
             <% end %>
             <% if can? :disable, user %>
               <div class="dropdown-divider"></div>
-              <%= link_to (t 'general.action.disable'), '#', data: {confirm: (t 'messages.are_you_sure?')}, class: 'dropdown-item' %>
+              <%= link_to (t 'general.action.disable'), '#', data: {confirm: (t 'messages.are_you_sure')}, class: 'dropdown-item' %>
             <% end %>
             <% if can? :send_friendship, user %>
               <div class="dropdown-divider"></div>
@@ -36,19 +36,19 @@
             <% end %>
             <% if can? :block_user, user %>
               <div class="dropdown-divider"></div>
-              <%= link_to (t 'general.action.block'), block_user_path(user), data: {confirm: (t 'messages.are_you_sure?')}, class: 'dropdown-item' %>
+              <%= link_to (t 'general.action.block'), block_user_path(user), data: {confirm: (t 'messages.are_you_sure')}, class: 'dropdown-item' %>
             <% end %>
             <% if can? :unblock_user, user %>
               <div class="dropdown-divider"></div>
-              <%= link_to (t 'general.action.unblock'), unblock_user_path(user), data: {confirm: (t 'messages.are_you_sure?')}, class: 'dropdown-item' %>
+              <%= link_to (t 'general.action.unblock'), unblock_user_path(user), data: {confirm: (t 'messages.are_you_sure')}, class: 'dropdown-item' %>
             <% end %>
             <% if can? :add_superuser, user %>
               <div class="dropdown-divider"></div>
-              <%= link_to (t 'general.action.make_superuser'), add_superuser_path(user), data: {confirm: (t 'messages.are_you_sure?')}, class: 'dropdown-item' %>
+              <%= link_to (t 'general.action.make_superuser'), add_superuser_path(user), data: {confirm: (t 'messages.are_you_sure')}, class: 'dropdown-item' %>
             <% end %>
             <% if can? :remove_superuser, user %>
               <div class="dropdown-divider"></div>
-              <%= link_to (t 'general.action.remove_superuser'), remove_superuser_path(user), data: {confirm: (t 'messages.are_you_sure?')}, class: 'dropdown-item' %>
+              <%= link_to (t 'general.action.remove_superuser'), remove_superuser_path(user), data: {confirm: (t 'messages.are_you_sure')}, class: 'dropdown-item' %>
             <% end %>
           </div>
         </td>

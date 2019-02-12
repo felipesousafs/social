@@ -20,7 +20,7 @@
         <td><%= message.chat %></td>
         <td><%= link_to 'Show', message %></td>
         <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: (t 'messages.are_you_sure?') } %></td>
+        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: (t 'messages.are_you_sure') } %></td>
       </tr>
     <% end %>
   </tbody>

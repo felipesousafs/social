@@ -15,7 +15,7 @@
       <tr>
         <td><%= blocked_user.user %></td>
         <td><%= link_to 'Show', blocked_user %></td>
-        <td><%= link_to 'Unblock', blocked_user, method: :delete, data: { confirm: (t 'messages.are_you_sure?') } %></td>
+        <td><%= link_to 'Unblock', blocked_user, method: :delete, data: { confirm: (t 'messages.are_you_sure') } %></td>
       </tr>
     <% end %>
   </tbody>
